@@ -391,6 +391,11 @@
 <p>AngularJS 还可以检测数组和对象的内容是否发生了变化。也就是可以监听值的变化而不仅仅是引用。通过向 $watch 传入第三个参数启动基于值而非引用的脏检查，</p>
 <p>按值检查显然比按引用检查更复杂，也涉及更多。这就是 AngularJS 默认不进行基于值的脏检查的原因。</p>
 <h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>在 JavaScript 中 NaN（Not-a-Number）不等于它本身，脏检查中应显示地处理。</p>
+<h3 id="eval-——-在-scope-的上下文中评估代码"><a href="#eval-——-在-scope-的上下文中评估代码" class="headerlink" title="$eval —— 在 scope 的上下文中评估代码"></a>$eval —— 在 scope 的上下文中评估代码</h3><p>AngularJS 允许我们在 scope 的上下文中执行某些代码。其中最简单的是 $eval。它接受一个函数作为参数，给这个函数传递一个 scope 本身的参数，并立即执行该函数。然后它返回这个函数返回的内容。$eval还有一个可选的（第二个）参数，它只是按照原样传递给函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Scope.prototype.$eval = function (expr, locals) &#123;</span><br><span class="line">	return expr(this, locals);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="apply-——-将外部代码与-digest-整合"><a href="#apply-——-将外部代码与-digest-整合" class="headerlink" title="$apply —— 将外部代码与 digest 整合"></a>$apply —— 将外部代码与 digest 整合</h3><p>可能 scope 上所有的函数中最出名的就是 $apply 了，它是将外部函数库整合到 AngularJS 的标准方法。因为，$apply 将函数作为参数，它使用 $eval 执行这个函数， 然后通过调用 $digest 重振 digest 循环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Scope.prototype.$apply = function(expr) &#123;</span><br><span class="line">	try &#123;</span><br><span class="line">		return this.$eval(expr);</span><br><span class="line">	&#125; finally &#123;</span><br><span class="line">		this.$digest();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在 finally 块中调用 $digest，以确保即使提供的函数抛出异常 digest 也会进行。$apply 的主要思想是我们可以执行某些不了解 AngularJS 的代码。这些代码可能仍然会改变 scope 中的一些东西，只要我们把这些代码包含在 $apply 中 我们就可以确定 scope 中的任何 watch 可以接受这些变化。也就是说，$apply 将代码整合到了 AngularJS 的生命周期中。</p>
+</blockquote>
 
           
         
