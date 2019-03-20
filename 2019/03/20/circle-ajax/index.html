@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用递归来实现这个需求。 递归实现 ajax 的循环请求我们可以看一下用 for 循环的写法和结果12345678910for (var i = 0; i &amp;lt;=">
+<meta name="description" content="我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用递归来实现这个需求。 递归实现 ajax 的循环请求我们可以先看一下用 for 循环的写法和结果12345678910for (var i = 0; i &amp;lt;">
 <meta name="keywords" content="前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="循环请求 ajax">
 <meta property="og:url" content="http://wangyanan1220.coding.me/2019/03/20/circle-ajax/index.html">
 <meta property="og:site_name" content="Wynn">
-<meta property="og:description" content="我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用递归来实现这个需求。 递归实现 ajax 的循环请求我们可以看一下用 for 循环的写法和结果12345678910for (var i = 0; i &amp;lt;=">
+<meta property="og:description" content="我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用递归来实现这个需求。 递归实现 ajax 的循环请求我们可以先看一下用 for 循环的写法和结果12345678910for (var i = 0; i &amp;lt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-20T09:13:08.356Z">
+<meta property="og:updated_time" content="2019-03-20T09:18:04.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环请求 ajax">
-<meta name="twitter:description" content="我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用递归来实现这个需求。 递归实现 ajax 的循环请求我们可以看一下用 for 循环的写法和结果12345678910for (var i = 0; i &amp;lt;=">
+<meta name="twitter:description" content="我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用递归来实现这个需求。 递归实现 ajax 的循环请求我们可以先看一下用 for 循环的写法和结果12345678910for (var i = 0; i &amp;lt;">
 
 
 
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T17:13:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T17:18:04+08:00">
                 2019-03-20
               </time>
             
@@ -342,8 +342,8 @@
       
 
       
-        <p>我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。<br>需要重复发送同一个 ajax 的需求还挺常见的，我们可以用<em>递归</em>来实现这个需求。</p>
-<h2 id="递归实现-ajax-的循环请求"><a href="#递归实现-ajax-的循环请求" class="headerlink" title="递归实现 ajax 的循环请求"></a>递归实现 ajax 的循环请求</h2><h3 id="我们可以看一下用-for-循环的写法和结果"><a href="#我们可以看一下用-for-循环的写法和结果" class="headerlink" title="我们可以看一下用 for 循环的写法和结果"></a>我们可以看一下用 for 循环的写法和结果</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i = 0; i &lt;= 10; i++) &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        <span class="built_in">type</span>   : <span class="string">"GET"</span>,</span><br><span class="line">        url    : <span class="string">"data.php?id="</span> + i,</span><br><span class="line">        success: <span class="keyword">function</span> (data) &#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            $(<span class="string">'.ordinary ul'</span>).append(<span class="string">'&lt;li&gt;'</span> + data + <span class="string">'&lt;/li&gt;'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用<strong>递归</strong>来实现这个需求。</p>
+<h2 id="递归实现-ajax-的循环请求"><a href="#递归实现-ajax-的循环请求" class="headerlink" title="递归实现 ajax 的循环请求"></a>递归实现 ajax 的循环请求</h2><h3 id="我们可以先看一下用-for-循环的写法和结果"><a href="#我们可以先看一下用-for-循环的写法和结果" class="headerlink" title="我们可以先看一下用 for 循环的写法和结果"></a>我们可以先看一下用 for 循环的写法和结果</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i = 0; i &lt;= 10; i++) &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        <span class="built_in">type</span>   : <span class="string">"GET"</span>,</span><br><span class="line">        url    : <span class="string">"data.php?id="</span> + i,</span><br><span class="line">        success: <span class="keyword">function</span> (data) &#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            $(<span class="string">'.ordinary ul'</span>).append(<span class="string">'&lt;li&gt;'</span> + data + <span class="string">'&lt;/li&gt;'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个用法中出现的问题还比较小，只是顺序错乱了而已。其实在使用的过程中会出现很多比这个更为严重的问题。</p>
 <h3 id="递归的写法"><a href="#递归的写法" class="headerlink" title="递归的写法"></a>递归的写法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> getData(index) &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        <span class="built_in">type</span>   : <span class="string">"GET"</span>,</span><br><span class="line">        url    : <span class="string">"data.php?id="</span> + index,</span><br><span class="line">        success: <span class="keyword">function</span> (data) &#123;</span><br><span class="line">            console.log(data + <span class="string">'递归'</span>);</span><br><span class="line">            $(<span class="string">'.recursion ul'</span>).append(<span class="string">'&lt;li&gt;'</span> + data + <span class="string">'&lt;/li&gt;'</span>)</span><br><span class="line">            <span class="keyword">if</span> (index &lt; 10) &#123;</span><br><span class="line">                index++;</span><br><span class="line">                getData(index)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var index = 0;</span><br><span class="line">getData(index)</span><br></pre></td></tr></table></figure>
 <p>这种写法保证了发送请求的顺序，在得到这次请求的结果之后再发送下次的请求。</p>
@@ -550,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归实现-ajax-的循环请求"><span class="nav-number">1.</span> <span class="nav-text">递归实现 ajax 的循环请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们可以看一下用-for-循环的写法和结果"><span class="nav-number">1.1.</span> <span class="nav-text">我们可以看一下用 for 循环的写法和结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归的写法"><span class="nav-number">1.2.</span> <span class="nav-text">递归的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">1.3.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTML"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#data-php"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">data.php</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归实现-ajax-的循环请求"><span class="nav-number">1.</span> <span class="nav-text">递归实现 ajax 的循环请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们可以先看一下用-for-循环的写法和结果"><span class="nav-number">1.1.</span> <span class="nav-text">我们可以先看一下用 for 循环的写法和结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归的写法"><span class="nav-number">1.2.</span> <span class="nav-text">递归的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">1.3.</span> <span class="nav-text">代码：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTML"><span class="nav-number">1.3.0.0.1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#data-php"><span class="nav-number">1.3.0.0.2.</span> <span class="nav-text">data.php</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
