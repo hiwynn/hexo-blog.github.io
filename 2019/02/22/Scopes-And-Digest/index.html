@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来观察数据结构中的变化。这些观察功能是使用脏检查实现的，并在 digest cycle 中进行。 Scope 对象AngularJS 中的 scope 其实就是一个对象：12function Scope() &amp;#123;&amp;#125; 监听对象的属性: $watch 和 $">
+<meta name="description" content="AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来观察数据结构中的变化。这些观察功能是使用脏检查实现的，并在 digest 循环中进行。 Scope 对象AngularJS 中的 scope 其实就是一个对象：12function Scope() &amp;#123;&amp;#125; 监听对象的属性: $watch 和 $dige">
 <meta name="keywords" content="Build Your Own AngularJS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Build Your Own AngularJS —— Scopes And Digest">
 <meta property="og:url" content="http://wangyanan1220.coding.me/2019/02/22/Scopes-And-Digest/index.html">
 <meta property="og:site_name" content="Wynn">
-<meta property="og:description" content="AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来观察数据结构中的变化。这些观察功能是使用脏检查实现的，并在 digest cycle 中进行。 Scope 对象AngularJS 中的 scope 其实就是一个对象：12function Scope() &amp;#123;&amp;#125; 监听对象的属性: $watch 和 $">
+<meta property="og:description" content="AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来观察数据结构中的变化。这些观察功能是使用脏检查实现的，并在 digest 循环中进行。 Scope 对象AngularJS 中的 scope 其实就是一个对象：12function Scope() &amp;#123;&amp;#125; 监听对象的属性: $watch 和 $dige">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-08T06:31:17.355Z">
+<meta property="og:updated_time" content="2019-03-26T08:31:10.989Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Build Your Own AngularJS —— Scopes And Digest">
-<meta name="twitter:description" content="AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来观察数据结构中的变化。这些观察功能是使用脏检查实现的，并在 digest cycle 中进行。 Scope 对象AngularJS 中的 scope 其实就是一个对象：12function Scope() &amp;#123;&amp;#125; 监听对象的属性: $watch 和 $">
+<meta name="twitter:description" content="AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来观察数据结构中的变化。这些观察功能是使用脏检查实现的，并在 digest 循环中进行。 Scope 对象AngularJS 中的 scope 其实就是一个对象：12function Scope() &amp;#123;&amp;#125; 监听对象的属性: $watch 和 $dige">
 
 
 
@@ -342,7 +342,7 @@
       
 
       
-        <p>AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来<strong>观察数据结构中的变化</strong>。这些观察功能是使用脏检查实现的，并在 digest cycle 中进行。</p>
+        <p>AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来<strong>观察数据结构中的变化</strong>。这些观察功能是使用脏检查实现的，并在 digest 循环中进行。</p>
 <h2 id="Scope-对象"><a href="#Scope-对象" class="headerlink" title="Scope 对象"></a>Scope 对象</h2><p>AngularJS 中的 scope 其实就是一个对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function Scope() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="监听对象的属性-watch-和-digest"><a href="#监听对象的属性-watch-和-digest" class="headerlink" title="监听对象的属性: $watch 和 $digest"></a>监听对象的属性: $watch 和 $digest</h2><p>$watch 和 $digest 共同构成了 digest 循环的核心：对数据的变化做出反应。</p>
 <ol>
@@ -362,7 +362,7 @@
 <li>为一个 scope 绑定数据本身不会对性能产生影响，如果没有 watcher 在监听一个属性那么它是否在 scope 中并不重要。AngularJS 遍历的是 scope 中的 watch 而不是它的的属性。</li>
 <li>一个 $digest 循环会调用每一个 watch 函数。因此要注意 watch 的数量和单个 watch 函数或表达式的的性能。</li>
 </ul>
-<h2 id="初始化-watch-的值"><a href="#初始化-watch-的值" class="headerlink" title="初始化 watch 的值"></a>初始化 watch 的值</h2><p>第一次执行一个 watch 的时候，因为我们还没有定义 last，它将是 undefined，当第一个合法值也是 undefined 的时候，这样就不管用了。<br>所以我们需要初始化 last 属性的值，并且这个值是我们可以保证的唯一的，不等于 watch 函数可能返回的任何值。函数满足这个条件，JavaScript 的函数是所谓的参考值，他们不等于任何东西除了它们本身。</p>
+<h2 id="初始化-watch-的值"><a href="#初始化-watch-的值" class="headerlink" title="初始化 watch 的值"></a>初始化 watch 的值</h2><p>第一次执行一个 watch 的时候，因为我们还没有定义 last，它将是 undefined，当第一个合法值也是 undefined 的时候，这样就不管用了。<br>所以我们需要初始化 last 属性的值，并且这个值是我们可以保证的唯一的，不等于 watch 函数可能返回的任何值。函数满足这个条件，<strong>JavaScript 的函数是所谓的参考值，他们不等于任何东西除了它们本身</strong>。</p>
 <ol>
 <li>在顶部引入一个函数</li>
 <li>把这个函数赋给新的 watch 的 last 属性</li>
