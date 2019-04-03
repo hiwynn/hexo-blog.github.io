@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Wynn">
 <meta property="og:description" content="让我们先对路由有个了解 1. 后端路由当我们访问一个地址时，浏览器会向后台服务器发出一个请求，服务器响应请求，后台拼接 HTML 文件传给前端显示。1Route::get(&amp;apos;/home&amp;apos;, &amp;apos;HomeController@index&amp;apos;)-&amp;gt;name(&amp;apos;home&amp;apos;); 2. 前端路由单页面应用（SPA）的原理：JS 能感知到当前 UR">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-14T08:37:50.586Z">
+<meta property="og:updated_time" content="2019-04-03T09:00:57.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现前端路由">
 <meta name="twitter:description" content="让我们先对路由有个了解 1. 后端路由当我们访问一个地址时，浏览器会向后台服务器发出一个请求，服务器响应请求，后台拼接 HTML 文件传给前端显示。1Route::get(&amp;apos;/home&amp;apos;, &amp;apos;HomeController@index&amp;apos;)-&amp;gt;name(&amp;apos;home&amp;apos;); 2. 前端路由单页面应用（SPA）的原理：JS 能感知到当前 UR">
@@ -343,7 +343,7 @@
 
       
         <p>让我们先对路由有个了解</p>
-<h4 id="1-后端路由"><a href="#1-后端路由" class="headerlink" title="1. 后端路由"></a>1. 后端路由</h4><p>当我们访问一个地址时，浏览器会向后台服务器发出一个请求，服务器响应请求，后台拼接 HTML 文件传给前端显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::get(&apos;/home&apos;, &apos;HomeController@index&apos;)-&gt;name(&apos;home&apos;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-后端路由"><a href="#1-后端路由" class="headerlink" title="1. 后端路由"></a>1. 后端路由</h4><p>当我们访问一个地址时，浏览器会向后台服务器发出一个请求，服务器响应请求，后台拼接 HTML 文件传给前端显示。<br><-- more="" --=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::get(&apos;/home&apos;, &apos;HomeController@index&apos;)-&gt;name(&apos;home&apos;);</span><br></pre></td></tr></table></figure></--></p>
 <h4 id="2-前端路由"><a href="#2-前端路由" class="headerlink" title="2. 前端路由"></a>2. 前端路由</h4><p>单页面应用（SPA）的原理：JS 能感知到当前 URL 的变化，从而动态的将当前页面的内容清除并展示新的内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name    : &apos;login&apos;,</span><br><span class="line">    url     : &apos;/login&apos;,</span><br><span class="line">    parent  : &apos;&apos;,</span><br><span class="line">    abstract: false,</span><br><span class="line">    views   : [&#123;</span><br><span class="line">        name        : &apos;main&apos;,</span><br><span class="line">        templateUrl : &apos;views/login.html&apos;,</span><br><span class="line">        controller  : &apos;loginController&apos;,</span><br><span class="line">        controllerAs: &apos;ctrl&apos;,</span><br><span class="line">        paths       : [&apos;controllers/loginController&apos;, &apos;services/AuthData&apos;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>随着前后端的分离和单页面应用的普及，目前很多项目都在使用前端路由。</p>
@@ -421,8 +421,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/20/circle-ajax/" rel="prev" title="循环请求 ajax">
-                循环请求 ajax <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/03/circle-ajax/" rel="prev" title="循环发送 ajax 请求">
+                循环发送 ajax 请求 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

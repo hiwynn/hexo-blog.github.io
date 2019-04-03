@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/03/20/circle-ajax/">
+    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/04/03/circle-ajax/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yanan Wang">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/20/circle-ajax/" itemprop="url">循环请求 ajax</a></h1>
+                <a class="post-title-link" href="/2019/04/03/circle-ajax/" itemprop="url">循环发送 ajax 请求</a></h1>
         
 
         <div class="post-meta">
@@ -280,8 +280,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T17:18:04+08:00">
-                2019-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-03T17:00:08+08:00">
+                2019-04-03
               </time>
             
 
@@ -342,7 +342,7 @@
       
         
           
-            <p>我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用<strong>递归</strong>来实现这个需求。</p>
+            <p>我们经常会碰到需要循环请求 ajax 的时候，比如需要拿到本次请求的结果作为下次请求的数据或者参数，或者需要控制发送请求的频率，如果写在寻常的 for 循环中会出现各种各样的问题。需要重复发送同一个 ajax 的需求还挺常见的，我们可以用<strong>递归</strong>来实现这个需求。<br><-- more="" --=""></--></p>
 <h2 id="递归实现-ajax-的循环请求"><a href="#递归实现-ajax-的循环请求" class="headerlink" title="递归实现 ajax 的循环请求"></a>递归实现 ajax 的循环请求</h2><h3 id="我们可以先看一下用-for-循环的写法和结果"><a href="#我们可以先看一下用-for-循环的写法和结果" class="headerlink" title="我们可以先看一下用 for 循环的写法和结果"></a>我们可以先看一下用 for 循环的写法和结果</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (var i = 0; i &lt;= 10; i++) &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        <span class="built_in">type</span>   : <span class="string">"GET"</span>,</span><br><span class="line">        url    : <span class="string">"data.php?id="</span> + i,</span><br><span class="line">        success: <span class="keyword">function</span> (data) &#123;</span><br><span class="line">            console.log(data);</span><br><span class="line">            $(<span class="string">'.ordinary ul'</span>).append(<span class="string">'&lt;li&gt;'</span> + data + <span class="string">'&lt;/li&gt;'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个用法中出现的问题还比较小，只是顺序错乱了而已。其实在使用的过程中会出现很多比这个更为严重的问题。</p>
 <h3 id="递归的写法"><a href="#递归的写法" class="headerlink" title="递归的写法"></a>递归的写法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> getData(index) &#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        <span class="built_in">type</span>   : <span class="string">"GET"</span>,</span><br><span class="line">        url    : <span class="string">"data.php?id="</span> + index,</span><br><span class="line">        success: <span class="keyword">function</span> (data) &#123;</span><br><span class="line">            console.log(data + <span class="string">'递归'</span>);</span><br><span class="line">            $(<span class="string">'.recursion ul'</span>).append(<span class="string">'&lt;li&gt;'</span> + data + <span class="string">'&lt;/li&gt;'</span>)</span><br><span class="line">            <span class="keyword">if</span> (index &lt; 10) &#123;</span><br><span class="line">                index++;</span><br><span class="line">                getData(index)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var index = 0;</span><br><span class="line">getData(index)</span><br></pre></td></tr></table></figure>
@@ -492,7 +492,7 @@
         
           
             <p>让我们先对路由有个了解</p>
-<h4 id="1-后端路由"><a href="#1-后端路由" class="headerlink" title="1. 后端路由"></a>1. 后端路由</h4><p>当我们访问一个地址时，浏览器会向后台服务器发出一个请求，服务器响应请求，后台拼接 HTML 文件传给前端显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::get(&apos;/home&apos;, &apos;HomeController@index&apos;)-&gt;name(&apos;home&apos;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-后端路由"><a href="#1-后端路由" class="headerlink" title="1. 后端路由"></a>1. 后端路由</h4><p>当我们访问一个地址时，浏览器会向后台服务器发出一个请求，服务器响应请求，后台拼接 HTML 文件传给前端显示。<br><-- more="" --=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Route::get(&apos;/home&apos;, &apos;HomeController@index&apos;)-&gt;name(&apos;home&apos;);</span><br></pre></td></tr></table></figure></--></p>
 <h4 id="2-前端路由"><a href="#2-前端路由" class="headerlink" title="2. 前端路由"></a>2. 前端路由</h4><p>单页面应用（SPA）的原理：JS 能感知到当前 URL 的变化，从而动态的将当前页面的内容清除并展示新的内容。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    name    : &apos;login&apos;,</span><br><span class="line">    url     : &apos;/login&apos;,</span><br><span class="line">    parent  : &apos;&apos;,</span><br><span class="line">    abstract: false,</span><br><span class="line">    views   : [&#123;</span><br><span class="line">        name        : &apos;main&apos;,</span><br><span class="line">        templateUrl : &apos;views/login.html&apos;,</span><br><span class="line">        controller  : &apos;loginController&apos;,</span><br><span class="line">        controllerAs: &apos;ctrl&apos;,</span><br><span class="line">        paths       : [&apos;controllers/loginController&apos;, &apos;services/AuthData&apos;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>随着前后端的分离和单页面应用的普及，目前很多项目都在使用前端路由。</p>
@@ -671,7 +671,7 @@
       
         
           
-            <p>AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来<strong>观察数据结构中的变化</strong>。这些观察功能是使用脏检查实现的，并在 digest 循环中进行。</p>
+            <p>AngularJS 中的 Scope 是简单的 JavaScript 对象，可以在它上面添加属性。此外，它们还具有一些额外的功能来<strong>观察数据结构中的变化</strong>。这些观察功能是使用脏检查实现的，并在 digest 循环中进行。<br><-- more="" --=""></--></p>
 <h2 id="Scope-对象"><a href="#Scope-对象" class="headerlink" title="Scope 对象"></a>Scope 对象</h2><p>AngularJS 中的 scope 其实就是一个对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function Scope() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="监听对象的属性-watch-和-digest"><a href="#监听对象的属性-watch-和-digest" class="headerlink" title="监听对象的属性: $watch 和 $digest"></a>监听对象的属性: $watch 和 $digest</h2><p>$watch 和 $digest 共同构成了 digest 循环的核心：对数据的变化做出反应。</p>
 <ol>
