@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content=",">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="我们将依靠 Angular 依赖注入来将 service 注入到 component 的构造函数，而不是使用 new 来创建服务。1constructor(private heroService: HeroService) &amp;#123; &amp;#125; service 是在彼此没有关系的类之间共享信息的好方式。 创建 HeroService使用 Angular CLI，创建一个名字是 hero 的">
+<meta name="keywords" content="Angular">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Angular -- Service">
+<meta property="og:url" content="http://wangyanan1220.coding.me/drafts/Angular-Service.html">
+<meta property="og:site_name" content="Wynn">
+<meta property="og:description" content="我们将依靠 Angular 依赖注入来将 service 注入到 component 的构造函数，而不是使用 new 来创建服务。1constructor(private heroService: HeroService) &amp;#123; &amp;#125; service 是在彼此没有关系的类之间共享信息的好方式。 创建 HeroService使用 Angular CLI，创建一个名字是 hero 的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-18T07:55:34.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular -- Service">
+<meta name="twitter:description" content="我们将依靠 Angular 依赖注入来将 service 注入到 component 的构造函数，而不是使用 new 来创建服务。1constructor(private heroService: HeroService) &amp;#123; &amp;#125; service 是在彼此没有关系的类之间共享信息的好方式。 创建 HeroService使用 Angular CLI，创建一个名字是 hero 的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wangyanan1220.coding.me/drafts/Angular-Service.html">
+
+
+
+
+
+  <title>Angular -- Service | Wynn</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wynn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">Angular -- Service</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <p>我们将依靠 Angular 依赖注入来将 service 注入到 component 的构造函数，而不是使用 new 来创建服务。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constructor(private heroService: HeroService) &#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>service 是在彼此没有关系的类之间共享信息的好方式。</p>
+<h4 id="创建-HeroService"><a href="#创建-HeroService" class="headerlink" title="创建 HeroService"></a>创建 HeroService</h4><p>使用 Angular CLI，创建一个名字是 hero 的 service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng generate service hero</span><br></pre></td></tr></table></figure></p>
+<p>The HeroService class：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Injectable &#125; from &apos;@angular/core&apos;;</span><br><span class="line"></span><br><span class="line">@Injectable(&#123;</span><br><span class="line">  providedIn: &apos;root&apos;,</span><br><span class="line">&#125;)</span><br><span class="line">export class HeroService &#123;</span><br><span class="line"></span><br><span class="line">  constructor() &#123; &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="Injectable-services"><a href="#Injectable-services" class="headerlink" title="@Injectable() services"></a>@Injectable() services</h5><p>注意，新的 service 导入了 Angular 的 Injectable 符号，并用 @Injectable() 修饰符对类进行注释。<br>这将此类标记为参与到依赖注入系统的类。HeroService 类将提供一个可注入的 service，它还可以有自己的依赖注入项。</p>
+<p>@Injectable() 修饰符接受 service 的元数据对象，就像组件类中的 @Component() 修饰符一样。</p>
+<h5 id="获取-hero-数据"><a href="#获取-hero-数据" class="headerlink" title="获取 hero 数据"></a>获取 hero 数据</h5><p>HeroService 可以从任何地方获取 hero 数据，web 服务，本地存储或者是模拟的数据源。</p>
+<p>从组件中删除数据访问意味着你可以在任何时候改变实现的想法，而不需要接触任何组建。毕竟它们不知道这个 service 是如何工作的。</p>
+<h4 id="Provide-the-HeroService"><a href="#Provide-the-HeroService" class="headerlink" title="Provide the HeroService"></a>Provide the HeroService</h4><p>在 Angular 把 HeroService 注入 HeroesComponent 之前必须让依赖注入系统能够使用它。可以通过注册 provider 来实现。</p>
+<p>provider 能够创建或者交付 service。在本例中，它实例化 HeroService 类来提供服务。</p>
+<p>现在我们要确保 HeroService 被注册为 这个 service 的provider。我们正在用 injector 注册它，injector 是负责在需要时选择和注入 provider 的对象。</p>
+<p>默认情况下，Angular CLI 命令<code>ng generate service</code>通过在 @Injectable 修饰符中包含 provider 元数据为你的 service 注册一个带有  root injector  的 provider。</p>
+<p>如果你在 HeroService 类定义之前看一下<code>@Injectable()</code>语句，你会看到 <code>providedIn</code> 元数据值是 <code>&#39;root&#39;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Injectable(&#123;</span><br><span class="line">  providedIn: &apos;root&apos;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>当你在 root 级别提供 service 的时候，Angular 会创建一个单个共享的 HeroService 实例并注入任何需要它的类。在 @Injectable 元数据注册 provider 还允许 Angular 通过移除没有被使用的 service 来。优化一个应用程序。</p>
+<h4 id="更新-HeroesComponent"><a href="#更新-HeroesComponent" class="headerlink" title="更新 HeroesComponent"></a>更新 HeroesComponent</h4><h5 id="注入-HeroService"><a href="#注入-HeroService" class="headerlink" title="注入 HeroService"></a>注入 HeroService</h5><p>向构造函数添加一个 HeroService 类型的私有 heroService 参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constructor(private heroService: HeroService) &#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>该参数同时定义一个私有 heroService 属性，并将其标识为一个 HeroService 注入站点。</p>
+<h5 id="添加-getHeroes"><a href="#添加-getHeroes" class="headerlink" title="添加 getHeroes()"></a>添加 getHeroes()</h5><p>创建一个函数来从 service 中检索英雄<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getHeroes(): void &#123;</span><br><span class="line">  this.heroes = this.heroService.getHeroes();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="在-ngOnInit-中调用-getHeroes"><a href="#在-ngOnInit-中调用-getHeroes" class="headerlink" title="在 ngOnInit 中调用 getHeroes()"></a>在 ngOnInit 中调用 getHeroes()</h5><p>虽然我们可以在构造函数中调用 getHeroes()，但这不是最好的做法。</p>
+<p>保留构造函数以进行简单初始化，例如吧构造函数参数连接到属性。构造函数不应该做任何事情。它不应该向一个真正的数据服务一样调用一个函数来向远程服务器发送 HTTP 请求。</p>
+<p>在 ngOnInit 的生命周期钩子中调用 getHeroes() ，并在构造 HeroesComponent 实例后让 Angular 在合适的时间调用 ngOnInit。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ngOnInit() &#123;</span><br><span class="line">  this.getHeroes();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Observable-data"><a href="#Observable-data" class="headerlink" title="Observable data"></a>Observable data</h4><p> HeroService.getHeroes() 方法具有同步签名，这意味着  HeroService 可以同步获取英雄。HeroesComponent 使用 getHeroes() 的结果，就好像可以同步获取英雄一样。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">this.heroes = this.heroService.getHeroes();</span><br><span class="line">  ``` </span><br><span class="line">这在真实的 APP 中是不能工作的。在我们的代码中，因为 service 现在返回的是模拟数据。但是应用程序会很快从源端服务器获取英雄，这是一个本质上的异步操作。</span><br><span class="line"> </span><br><span class="line">HeroService  必须等待服务器的响应，getHeroes() 不会立即返回 hero 数据，并且在等待服务期间浏览器不会阻塞。</span><br><span class="line"> </span><br><span class="line">HeroService.getHeroes()必须有某种异步签名。</span><br><span class="line"> </span><br><span class="line">它可以接受回调。它可以返回一个 Promise。它可以返回一个 Observable。</span><br><span class="line"></span><br><span class="line">在本教程中，HeroService.getHeroes() 将返回一个可观察的对象，部分原因是它最终降使用 Angular HttpClient.get 方法获取英雄，HttpClient.get() 返回一个 Observable。</span><br><span class="line"></span><br><span class="line">#### Observable HeroService</span><br><span class="line"></span><br><span class="line">Observable 是 [RxJS](http://reactivex.io/rxjs/) 的关键类之一。</span><br><span class="line"></span><br><span class="line">打开 HeroService 文件从 RxJS 导入 Observable 和 of 符号。</span><br></pre></td></tr></table></figure></p>
+<p>import { Observable, of } from ‘rxjs’;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">of(HEROES)返回一个 Observable&lt;Hero[]&gt;，它发出一个值，即模拟英雄数组。</span><br><span class="line"></span><br><span class="line">&gt; 在 HTTP 教程中，你将调用 HttpClient.get&lt;Hero[]&gt;()，它也会返回一个 Observable&lt;Hero[]&gt;，它发出一个值，即 HTTP 响应主体中的英雄数组。</span><br><span class="line"></span><br><span class="line">##### 在 HeroesComponent 中 Subscribe</span><br><span class="line"></span><br><span class="line">HeroService.getHeroes 方法用于返回一个 Hero[]。现在它返回一个 Observable&lt;Hero[]&gt;。</span><br><span class="line"></span><br><span class="line">heroes.component.ts(Observable)</span><br></pre></td></tr></table></figure></p>
+<p>getHeroes(): void {<br>  this.heroService.getHeroes()<br>      .subscribe(heroes =&gt; this.heroes = heroes);<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">heroes.component.ts(Original)</span><br></pre></td></tr></table></figure></p>
+<p>getHeroes(): void {<br>  this.heroes = this.heroService.getHeroes();<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Observable.subscribe() 是关键的区别</span><br><span class="line"></span><br><span class="line">前一个版本给 component 的英雄属性分配了一个英雄数组。分配是同步发生的，就像服务器可以立即返回英雄或者浏览器可以在等待服务器的相应时冻结UI。</span><br><span class="line"></span><br><span class="line">当 HeroService 实际向远程服务器发出请求时，这将不起作用。</span><br><span class="line"></span><br><span class="line">新的版本等待 Observable 发送英雄数组 —— 这可能在现在或者几分钟后发生，然后 subscribe 将发出的数组传递给设置组建的 heroes 属性的回掉函数。</span><br><span class="line"></span><br><span class="line">当 HeroService 向服务器请求英雄时，这种一部方法将有效。</span><br><span class="line"></span><br><span class="line">#### 显示数据</span><br><span class="line"></span><br><span class="line">在这一部分我们将：</span><br><span class="line">* 添加一个 MessagesComponent 在屏幕底部展示app的消息</span><br><span class="line">* 创建一个可注入的，app 范围的 MessageService 来发送用于展示的消息</span><br><span class="line">* 将 MessageService 注入 MessageService </span><br><span class="line">* 当 HeroService 成功获取 heroes 的时候展示消息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; 这是一个典型的 “service-in-service” 场景：我们把 MessageService 注入到 HeroService 中，HeroService 又被注入 HeroesComponent 中。</span><br><span class="line"></span><br><span class="line">##### 从 HeroService 发送一条消息</span><br><span class="line"></span><br><span class="line">修改 getHeros 方法使它获取到 heros 的时候发送一条消息。</span><br></pre></td></tr></table></figure></p>
+<p>getHeroes(): Observable&lt;Hero[]&gt; {<br>  // TODO: send the message <em>after</em> fetching the heroes<br>  this.messageService.add(‘HeroService: fetched heroes’);<br>  return of(HEROES);<br>}<br><code>`</code> </p>
+
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/face04.jpg" alt="Yanan Wang">
+            
+              <p class="site-author-name" itemprop="name">Yanan Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hiwynn" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangyanan@shinetechsoftware.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/profile.php?id=100016805581410" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="skype:wangyanan1220?call|chat" target="_blank" title="Skype">
+                      
+                        <i class="fa fa-fw fa-skype"></i>Skype</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建-HeroService"><span class="nav-number">1.</span> <span class="nav-text">创建 HeroService</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Injectable-services"><span class="nav-number">1.1.</span> <span class="nav-text">@Injectable() services</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#获取-hero-数据"><span class="nav-number">1.2.</span> <span class="nav-text">获取 hero 数据</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Provide-the-HeroService"><span class="nav-number">2.</span> <span class="nav-text">Provide the HeroService</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新-HeroesComponent"><span class="nav-number">3.</span> <span class="nav-text">更新 HeroesComponent</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注入-HeroService"><span class="nav-number">3.1.</span> <span class="nav-text">注入 HeroService</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加-getHeroes"><span class="nav-number">3.2.</span> <span class="nav-text">添加 getHeroes()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在-ngOnInit-中调用-getHeroes"><span class="nav-number">3.3.</span> <span class="nav-text">在 ngOnInit 中调用 getHeroes()</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observable-data"><span class="nav-number">4.</span> <span class="nav-text">Observable data</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yanan Wang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
