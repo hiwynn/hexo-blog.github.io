@@ -350,9 +350,13 @@
 <blockquote>
 <p>与 <a href="https://www.lodashjs.com/docs/4.17.5.html#pullAll" target="_blank" rel="noopener"> _.pullAll</a> 不同，这个方法返回一个新的数组。</p>
 </blockquote>
-<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<p>参数</p>
+<ul>
 <li>array (<em>Array</em>): 要检查的数组</li>
-<li>[values] (<em>…Array</em>): 要排除的值<h4 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h4></li>
+<li>[values] (<em>…Array</em>): 要排除的值</li>
+</ul>
+<p>返回</p>
+<ul>
 <li>(Array): 返回新的过滤后的数组</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.difference([2, 1], [2, 3]);  // =&gt; [1]</span><br></pre></td></tr></table></figure>
@@ -371,11 +375,13 @@
 <blockquote>
 <p>原数组不会被改变。</p>
 </blockquote>
-<h4 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h4><ul>
+<p>参数</p>
+<ul>
 <li>array (<em>Array</em>): 要查询的数组</li>
 <li>[values] (<em>…Array</em>): 每次迭代调用的函数</li>
 </ul>
-<h4 id="返回-1"><a href="#返回-1" class="headerlink" title="返回"></a>返回</h4><ul>
+<p>返回</p>
+<ul>
 <li>(Array): 返回数组的切片</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var users = [</span><br><span class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: true &#125;,</span><br><span class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</span><br><span class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.dropRightWhile(users, function(o) &#123; return !o.active; &#125;);  // =&gt; [ &#123; user: &apos;barney&apos;, active: true &#125; ]</span><br><span class="line"> </span><br><span class="line">_.dropRightWhile(users, &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: false &#125;);  // [ &#123; user: &apos;barney&apos;, active: true &#125;, &#123; user: &apos;fred&apos;, active: false &#125; ]</span><br><span class="line"></span><br><span class="line">_.dropRightWhile(users, [&apos;active&apos;, false]);  // =&gt; [ &#123; user: &apos;barney&apos;, active: true &#125; ]</span><br><span class="line"></span><br><span class="line">_.dropRightWhile(users, [&apos;active&apos;, true]);  // =&gt; 原数组</span><br><span class="line"> </span><br><span class="line">_.dropRightWhile(users, &apos;active&apos;);  // =&gt; 原数组</span><br></pre></td></tr></table></figure>
