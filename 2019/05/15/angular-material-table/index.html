@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content=",">
+  <meta name="keywords" content="Angular,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。我们会经常使用到 Promise，项目代码：1234return new Promise(function (resolve, reject) &amp;#123;    instanceValueGroup.pageNotChanged = true;    resolve(instanceValueGroup);">
-<meta name="keywords" content="前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="实现 Promise">
-<meta property="og:url" content="http://wangyanan1220.coding.me/drafts/implement-promise.html">
+<meta name="description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新   定义列模板下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name">
+<meta name="keywords" content="Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular Material Table Basic">
+<meta property="og:url" content="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/index.html">
 <meta property="og:site_name" content="Wynn">
-<meta property="og:description" content="Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。我们会经常使用到 Promise，项目代码：1234return new Promise(function (resolve, reject) &amp;#123;    instanceValueGroup.pageNotChanged = true;    resolve(instanceValueGroup);">
+<meta property="og:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新   定义列模板下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-08T10:35:25.954Z">
+<meta property="og:updated_time" content="2019-05-15T08:48:08.979Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="实现 Promise">
-<meta name="twitter:description" content="Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。我们会经常使用到 Promise，项目代码：1234return new Promise(function (resolve, reject) &amp;#123;    instanceValueGroup.pageNotChanged = true;    resolve(instanceValueGroup);">
+<meta name="twitter:title" content="Angular Material Table Basic">
+<meta name="twitter:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新   定义列模板下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wangyanan1220.coding.me/drafts/implement-promise.html">
+  <link rel="canonical" href="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/">
 
 
 
 
 
-  <title>实现 Promise | Wynn</title>
+  <title>Angular Material Table Basic | Wynn</title>
   
 
 
@@ -241,35 +241,186 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanan Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face04.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wynn">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">实现 Promise</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>Promise 对象用于表示一个异步操作的最终状态（完成或失败），以及该异步操作的结果值。我们会经常使用到 Promise，项目代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">return new Promise(function (resolve, reject) &#123;</span><br><span class="line">    instanceValueGroup.pageNotChanged = true;</span><br><span class="line">    resolve(instanceValueGroup);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>那么 Promise 是怎么实现的呢？<br><a id="more"></a></p>
-<h2 id="递归实现-ajax-的循环请求"><a href="#递归实现-ajax-的循环请求" class="headerlink" title="递归实现 ajax 的循环请求"></a>递归实现 ajax 的循环请求</h2><h3 id="我们可以先看一下用-for-循环的写法和结果"><a href="#我们可以先看一下用-for-循环的写法和结果" class="headerlink" title="我们可以先看一下用 for 循环的写法和结果"></a>我们可以先看一下用 for 循环的写法和结果</h3>
+          <h1 class="post-title" itemprop="name headline">Angular Material Table Basic</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T18:53:36+08:00">
+                2019-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建组建、提供数据"><a href="#创建组建、提供数据" class="headerlink" title="创建组建、提供数据"></a>创建组建、提供数据</h3><ul>
+<li>创建组建 <table mat-table=""></table></li>
+<li><p>提供数据 dataSource</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;table mat-table [dataSource]=”myDataArray”&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用 renderRows() 对表的渲染进行更新</p>
+</li>
+</ul>
+<h3 id="定义列模板"><a href="#定义列模板" class="headerlink" title="定义列模板"></a>定义列模板</h3><p>下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name 属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ng-container matColumnDef=&quot;userName&quot;&gt;</span><br><span class="line">  &lt;th mat-header-cell *matHeaderCellDef&gt; Name &lt;/th&gt;</span><br><span class="line">  &lt;td mat-cell *matCellDef=&quot;let user&quot;&gt; &#123;&#123;user.name&#125;&#125; &lt;/td&gt;</span><br><span class="line">&lt;/ng-container&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="定义行模板"><a href="#定义行模板" class="headerlink" title="定义行模板"></a>定义行模板</h3><p>最后，一旦定义了列就要告诉表哪些列将在头和数据行中呈现。</p>
+<p>首先，在组件中创建一个变量，该变量包含要呈现的列的列表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">columnsToDisplay = [&apos;userName&apos;, &apos;age&apos;];</span><br></pre></td></tr></table></figure>
+<p>然后将 <code>mat-header-row</code> 和 <code>mat-row</code> 添加到 <code>mat-table</code> 的内容中，并提供列列表作为输入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr mat-header-row *matHeaderRowDef=&quot;columnsToDisplay&quot;&gt;&lt;/tr&gt;</span><br><span class="line">&lt;tr mat-row *matRowDef=&quot;let myRowData; columns: columnsToDisplay&quot;&gt;&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+<p>提供给行的这个列表的列可以是任意顺序的，不必是定义的列的顺序。此外，不必包含模板中定义的每一列。</p>
+<p>这意味着，可以轻松地通过改变提供给行的列列表重新排序，并动态地包含/排除列。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag"># Angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/14/lodashjs-array-01/" rel="next" title="lodashjs —— Array（一）">
+                <i class="fa fa-chevron-left"></i> lodashjs —— Array（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/15/lodashjs-array-02/" rel="prev" title="lodashjs —— Array（二）">
+                lodashjs —— Array（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -412,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归实现-ajax-的循环请求"><span class="nav-number">1.</span> <span class="nav-text">递归实现 ajax 的循环请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们可以先看一下用-for-循环的写法和结果"><span class="nav-number">1.1.</span> <span class="nav-text">我们可以先看一下用 for 循环的写法和结果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建组建、提供数据"><span class="nav-number">1.1.</span> <span class="nav-text">创建组建、提供数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义列模板"><span class="nav-number">1.2.</span> <span class="nav-text">定义列模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义行模板"><span class="nav-number">1.3.</span> <span class="nav-text">定义行模板</span></a></li></ol></li></ol></div>
             
 
           </div>
