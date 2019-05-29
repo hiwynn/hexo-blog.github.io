@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新   定义列模板下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name">
+<meta name="description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新">
 <meta name="keywords" content="Angular">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular Material Table Basic">
 <meta property="og:url" content="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/index.html">
 <meta property="og:site_name" content="Wynn">
-<meta property="og:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新   定义列模板下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name">
+<meta property="og:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-15T08:48:08.979Z">
+<meta property="og:updated_time" content="2019-05-28T03:00:49.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular Material Table Basic">
-<meta name="twitter:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新   定义列模板下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name">
+<meta name="twitter:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新">
 
 
 
@@ -350,6 +350,7 @@
 <li><p>调用 renderRows() 对表的渲染进行更新</p>
 </li>
 </ul>
+<a id="more"></a>
 <h3 id="定义列模板"><a href="#定义列模板" class="headerlink" title="定义列模板"></a>定义列模板</h3><p>下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name 属性。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ng-container matColumnDef=&quot;userName&quot;&gt;</span><br><span class="line">  &lt;th mat-header-cell *matHeaderCellDef&gt; Name &lt;/th&gt;</span><br><span class="line">  &lt;td mat-cell *matCellDef=&quot;let user&quot;&gt; &#123;&#123;user.name&#125;&#125; &lt;/td&gt;</span><br><span class="line">&lt;/ng-container&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="定义行模板"><a href="#定义行模板" class="headerlink" title="定义行模板"></a>定义行模板</h3><p>最后，一旦定义了列就要告诉表哪些列将在头和数据行中呈现。</p>
@@ -480,7 +481,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

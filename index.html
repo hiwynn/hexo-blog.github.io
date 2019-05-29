@@ -249,6 +249,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/05/28/lodashjs-array-04/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yanan Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/face04.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wynn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/28/lodashjs-array-04/" itemprop="url">lodashjs —— Array（四）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T10:40:33+08:00">
+                2019-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/代码/" itemprop="url" rel="index">
+                    <span itemprop="name">代码</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="pull-array-values"><a href="#pull-array-values" class="headerlink" title="_.pull(array, [values])"></a>_.pull(array, [values])</h3><p>删除数组中所有与给定值相等的元素</p>
+<blockquote>
+<p>与 <a href="https://www.lodashjs.com/docs/4.17.5.html#without" target="_blank" rel="noopener">_.without</a> 不同，这个方法改变数组。通过 <a href="https://www.lodashjs.com/docs/4.17.5.html#remove" target="_blank" rel="noopener">_.remove</a> 移除元素。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"> </span><br><span class="line">_.pull(array, &apos;a&apos;, &apos;c&apos;);</span><br><span class="line">console.log(array);  // =&gt; [&apos;b&apos;, &apos;b&apos;]</span><br></pre></td></tr></table></figure>
+<h3 id="pullAll-array-values"><a href="#pullAll-array-values" class="headerlink" title="_.pullAll(array, values)"></a>_.pullAll(array, values)</h3><p>这个方法与 _.pull 相似，不同的是它接受一个值的数组来移除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"> </span><br><span class="line">_.pullAll(array, [&apos;a&apos;, &apos;c&apos;]);</span><br><span class="line">console.log(array);  // =&gt; [&apos;b&apos;, &apos;b&apos;]</span><br></pre></td></tr></table></figure>
+<h3 id="pullAllBy-array-values-iteratee-identity"><a href="#pullAllBy-array-values-iteratee-identity" class="headerlink" title="_.pullAllBy(array, values, [iteratee=_.identity])"></a>_.pullAllBy(array, values, [iteratee=_.identity])</h3><p>这个方法与 _.pullAll 相似，不同的是它接受一个值的数组来移除。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"> </span><br><span class="line">_.pullAll(array, [&apos;a&apos;, &apos;c&apos;]);</span><br><span class="line">console.log(array);  // =&gt; [&apos;b&apos;, &apos;b&apos;]</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/05/21/lodashjs-array-03/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -341,23 +491,15 @@
 
       
         
-          
-            <h3 id="initial-array"><a href="#initial-array" class="headerlink" title="_.initial(array)"></a>_.initial(array)</h3><p>获取数组中除最后一个元素外的其他所有元素</p>
+          <h3 id="initial-array"><a href="#initial-array" class="headerlink" title="_.initial(array)"></a>_.initial(array)</h3><p>获取数组中除最后一个元素外的其他所有元素</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.initial([1, 2, 3]);  // =&gt; [1, 2]</span><br></pre></td></tr></table></figure>
-<h3 id="intersection-arrays"><a href="#intersection-arrays" class="headerlink" title="_.intersection([arrays])"></a>_.intersection([arrays])</h3><p>创建一个数组，这个数组中的值包含在所有给定数组并且通过 <a href="http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero" target="_blank" rel="noopener">SameValueZero</a> 比较。结果值的顺序和引用由第一个数组决定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_.intersection([2, 1], [2, 3]);  // =&gt; [2]</span><br><span class="line"></span><br><span class="line">_.intersection([2, 1], [2, 3, 1]);  // =&gt; [2， 1]</span><br><span class="line"></span><br><span class="line">_.intersection([2, 1], [3]);  // =&gt; []</span><br></pre></td></tr></table></figure>
-<h3 id="intersectionBy-arrays-iteratee-identity"><a href="#intersectionBy-arrays-iteratee-identity" class="headerlink" title="_.intersectionBy([arrays], [iteratee=_.identity])"></a>_.intersectionBy([arrays], [iteratee=_.identity])</h3><p>这个方法与 _.intersectio 类似，不同的是 _.intersectionBy 接收一个迭代器并被数组的每个元素调用来生成比较的标准。结果值的顺序和引用由第一个数组决定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor);  // =&gt; [2.1]</span><br><span class="line"> </span><br><span class="line">// The `_.property` iteratee shorthand.</span><br><span class="line">_.intersectionBy([&#123; &apos;x&apos;: 1 &#125;], [&#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 1 &#125;], &apos;x&apos;);  // =&gt; [&#123; &apos;x&apos;: 1 &#125;]</span><br></pre></td></tr></table></figure>
-<h3 id="intersectionWith-arrays-comparator"><a href="#intersectionWith-arrays-comparator" class="headerlink" title="_.intersectionWith([arrays], [comparator])"></a>_.intersectionWith([arrays], [comparator])</h3><p>这个方法与 _.intersectio 类似，不同的是 _.intersectionWith 接收比较器来比较数组的元素。结果值的顺序和引用由第一个数组决定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var objects = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 2, &apos;y&apos;: 1 &#125;];</span><br><span class="line">var others = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 1 &#125;, &#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;];</span><br><span class="line"> </span><br><span class="line">_.intersectionWith(objects, others, _.isEqual);  // =&gt; [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;]</span><br></pre></td></tr></table></figure>
-<h3 id="join-array-separator-’-’"><a href="#join-array-separator-’-’" class="headerlink" title="_.join(array, [separator=’,’])"></a>_.join(array, [separator=’,’])</h3><p>将数组中的所有元素转换为由分隔符分隔的字符串。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.join([&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], &apos;~&apos;);  // =&gt; &apos;a~b~c&apos;</span><br></pre></td></tr></table></figure>
-<h3 id="last-array"><a href="#last-array" class="headerlink" title="_.last(array)"></a>_.last(array)</h3><p>获取数组中的最后一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.last([1, 2, 3]);  // =&gt; 3</span><br></pre></td></tr></table></figure>
-<h3 id="lastIndexOf-array-value-fromIndex-array-length-1"><a href="#lastIndexOf-array-value-fromIndex-array-length-1" class="headerlink" title="_.lastIndexOf(array, value, [fromIndex=array.length-1])"></a>_.lastIndexOf(array, value, [fromIndex=array.length-1])</h3><p>与 <em>.indexOf 类似，不同的是 \</em>.lastIndexOf 从右向左遍历</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.lastIndexOf([1, 2, 1, 2], 2);  // =&gt; 3</span><br><span class="line"> </span><br><span class="line">// Search from the `fromIndex`.</span><br><span class="line">_.lastIndexOf([1, 2, 1, 2], 2, 2);  // =&gt; 1</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/21/lodashjs-array-03/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -496,8 +638,7 @@
 
       
         
-          
-            <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建组建、提供数据"><a href="#创建组建、提供数据" class="headerlink" title="创建组建、提供数据"></a>创建组建、提供数据</h3><ul>
+          <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建组建、提供数据"><a href="#创建组建、提供数据" class="headerlink" title="创建组建、提供数据"></a>创建组建、提供数据</h3><ul>
 <li>创建组建 <table mat-table=""></table></li>
 <li><p>提供数据 dataSource</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;table mat-table [dataSource]=”myDataArray”&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
@@ -505,17 +646,13 @@
 <li><p>调用 renderRows() 对表的渲染进行更新</p>
 </li>
 </ul>
-<h3 id="定义列模板"><a href="#定义列模板" class="headerlink" title="定义列模板"></a>定义列模板</h3><p>下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name 属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ng-container matColumnDef=&quot;userName&quot;&gt;</span><br><span class="line">  &lt;th mat-header-cell *matHeaderCellDef&gt; Name &lt;/th&gt;</span><br><span class="line">  &lt;td mat-cell *matCellDef=&quot;let user&quot;&gt; &#123;&#123;user.name&#125;&#125; &lt;/td&gt;</span><br><span class="line">&lt;/ng-container&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="定义行模板"><a href="#定义行模板" class="headerlink" title="定义行模板"></a>定义行模板</h3><p>最后，一旦定义了列就要告诉表哪些列将在头和数据行中呈现。</p>
-<p>首先，在组件中创建一个变量，该变量包含要呈现的列的列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">columnsToDisplay = [&apos;userName&apos;, &apos;age&apos;];</span><br></pre></td></tr></table></figure>
-<p>然后将 <code>mat-header-row</code> 和 <code>mat-row</code> 添加到 <code>mat-table</code> 的内容中，并提供列列表作为输入。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr mat-header-row *matHeaderRowDef=&quot;columnsToDisplay&quot;&gt;&lt;/tr&gt;</span><br><span class="line">&lt;tr mat-row *matRowDef=&quot;let myRowData; columns: columnsToDisplay&quot;&gt;&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
-<p>提供给行的这个列表的列可以是任意顺序的，不必是定义的列的顺序。此外，不必包含模板中定义的每一列。</p>
-<p>这意味着，可以轻松地通过改变提供给行的列列表重新排序，并动态地包含/排除列。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/15/angular-material-table/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1331,7 +1468,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
