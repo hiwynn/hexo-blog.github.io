@@ -341,40 +341,17 @@
 
       
         
-          
-            <h3 id="pull-array-values"><a href="#pull-array-values" class="headerlink" title="_.pull(array, [values])"></a>_.pull(array, [values])</h3><p>删除数组中所有与给定值相等的元素</p>
+          <h3 id="pull-array-values"><a href="#pull-array-values" class="headerlink" title="_.pull(array, [values])"></a>_.pull(array, [values])</h3><p>删除数组中所有与给定值相等的元素</p>
 <blockquote>
 <p>与 <a href="https://www.lodashjs.com/docs/4.17.5.html#without" target="_blank" rel="noopener">_.without</a> 不同，这个方法改变数组。通过 <a href="https://www.lodashjs.com/docs/4.17.5.html#remove" target="_blank" rel="noopener">_.remove</a> 移除元素。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"> </span><br><span class="line">_.pull(array, &apos;a&apos;, &apos;c&apos;);</span><br><span class="line">console.log(array);  // =&gt; [&apos;b&apos;, &apos;b&apos;]</span><br></pre></td></tr></table></figure>
-<h3 id="pullAll-array-values"><a href="#pullAll-array-values" class="headerlink" title="_.pullAll(array, values)"></a>_.pullAll(array, values)</h3><p>这个方法与 _.pull 相似，不同的是它接收一个值的数组来移除。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</span><br><span class="line"> </span><br><span class="line">_.pullAll(array, [&apos;a&apos;, &apos;c&apos;]);</span><br><span class="line">console.log(array);  // =&gt; [&apos;b&apos;, &apos;b&apos;]</span><br></pre></td></tr></table></figure>
-<h3 id="pullAllBy-array-values-iteratee-identity"><a href="#pullAllBy-array-values-iteratee-identity" class="headerlink" title="_.pullAllBy(array, values, [iteratee=_.identity])"></a>_.pullAllBy(array, values, [iteratee=_.identity])</h3><p>这个方法与 _.pullAll 相似，不同的是它接收一个被数组的每个元素和值调用的遍历器，来生成比较的标准。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var array = [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 2 &#125;, &#123; &apos;x&apos;: 3 &#125;, &#123; &apos;x&apos;: 1 &#125;];</span><br><span class="line"> </span><br><span class="line">_.pullAllBy(array, [&#123; &apos;x&apos;: 1 &#125;, &#123; &apos;x&apos;: 3 &#125;], &apos;x&apos;);</span><br><span class="line">console.log(array);  // =&gt; [&#123; &apos;x&apos;: 2 &#125;]</span><br></pre></td></tr></table></figure>
-<h3 id="pullAllWith-array-values-comparator"><a href="#pullAllWith-array-values-comparator" class="headerlink" title="_.pullAllWith(array, values, [comparator])"></a>_.pullAllWith(array, values, [comparator])</h3><p>这个方法与 _.pullAll 相似，不同的是它接收一个用来比较数组中的元素和值的比较器。</p>
-<blockquote>
-<p>与 _.differenceWith 不同，这个方法改变数组/</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 3, &apos;y&apos;: 4 &#125;, &#123; &apos;x&apos;: 5, &apos;y&apos;: 6 &#125;];</span><br><span class="line"> </span><br><span class="line">_.pullAllWith(array, [&#123; &apos;x&apos;: 3, &apos;y&apos;: 4 &#125;], _.isEqual);</span><br><span class="line">console.log(array);</span><br><span class="line">// =&gt; [&#123; &apos;x&apos;: 1, &apos;y&apos;: 2 &#125;, &#123; &apos;x&apos;: 5, &apos;y&apos;: 6 &#125;]</span><br></pre></td></tr></table></figure>
-<h3 id="pullAt-array-indexes"><a href="#pullAt-array-indexes" class="headerlink" title="_.pullAt(array, [indexes])"></a>_.pullAt(array, [indexes])</h3><p>删除数组中与索引对应的元素，并返回被删除的元素组成的数组。</p>
-<blockquote>
-<p>与 _.at 不同，这个方法改变数组。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var array = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;];</span><br><span class="line">var pulled = _.pullAt(array, [1, 3]);</span><br><span class="line"> </span><br><span class="line">console.log(array);  // =&gt; [&apos;a&apos;, &apos;c&apos;]</span><br><span class="line"> </span><br><span class="line">console.log(pulled);  // =&gt; [&apos;b&apos;, &apos;d&apos;]</span><br></pre></td></tr></table></figure>
-<h3 id="remove-array-predicate-identity"><a href="#remove-array-predicate-identity" class="headerlink" title="_.remove(array, [predicate=_.identity])"></a>_.remove(array, [predicate=_.identity])</h3><p>删除数组中所有执行 predicate 返回为 truthy 的元素，返回被删除的元素组成的数组。predicate 有三个参数：value, index, array。</p>
-<blockquote>
-<p>与 _.filter 不同，这个方法改变数组。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4];</span><br><span class="line">var evens = _.remove(array, function(n) &#123;</span><br><span class="line">  return n % 2 == 0;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">console.log(array);  // =&gt; [1, 3]</span><br><span class="line"> </span><br><span class="line">console.log(evens);  // =&gt; [2, 4]</span><br></pre></td></tr></table></figure>
-<h3 id="reverse-array"><a href="#reverse-array" class="headerlink" title="_.reverse(array)"></a>_.reverse(array)</h3><p>翻转数组。</p>
-<blockquote>
-<p>这个方法改变数组，基于 Array#reverse。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3];</span><br><span class="line"> </span><br><span class="line">_.reverse(array);  // =&gt; [3, 2, 1]</span><br><span class="line"> </span><br><span class="line">console.log(array);  // =&gt; [3, 2, 1]</span><br></pre></td></tr></table></figure>
-<h3 id="slice-array-start-0-end-array-length"><a href="#slice-array-start-0-end-array-length" class="headerlink" title="_.slice(array, [start=0], [end=array.length])"></a>_.slice(array, [start=0], [end=array.length])</h3><p>创建一个从 start 开始到 end 结束（不包含 end）的数组切片。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 4, 5];</span><br><span class="line"></span><br><span class="line">console.log(_.slice(array, 1, 3));  // [2, 4]</span><br><span class="line"></span><br><span class="line">console.log(array);  // [1, 2, 4, 5]</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/28/lodashjs-array-04/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
