@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="_.fill(array, value, [start=0], [end=array.length])用从 start 开始到 end（但不包括 end）为止的值填充数组元素。  这个方法改变数组">
+<meta name="description" content="_.sortedIndex(array, value)使用二分查找来确定应将值插入数组的最低索引，以保持排序顺序。">
 <meta name="keywords" content="Lodash">
 <meta property="og:type" content="article">
-<meta property="og:title" content="lodashjs —— Array（二）">
-<meta property="og:url" content="http://wangyanan1220.coding.me/2019/05/15/lodashjs-array-02/index.html">
+<meta property="og:title" content="lodashjs —— Array（四）">
+<meta property="og:url" content="http://wangyanan1220.coding.me/2019/06/14/lodash/index.html">
 <meta property="og:site_name" content="Wynn">
-<meta property="og:description" content="_.fill(array, value, [start=0], [end=array.length])用从 start 开始到 end（但不包括 end）为止的值填充数组元素。  这个方法改变数组">
+<meta property="og:description" content="_.sortedIndex(array, value)使用二分查找来确定应将值插入数组的最低索引，以保持排序顺序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-21T02:46:10.393Z">
+<meta property="og:updated_time" content="2019-06-14T07:27:04.393Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="lodashjs —— Array（二）">
-<meta name="twitter:description" content="_.fill(array, value, [start=0], [end=array.length])用从 start 开始到 end（但不包括 end）为止的值填充数组元素。  这个方法改变数组">
+<meta name="twitter:title" content="lodashjs —— Array（四）">
+<meta name="twitter:description" content="_.sortedIndex(array, value)使用二分查找来确定应将值插入数组的最低索引，以保持排序顺序。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wangyanan1220.coding.me/2019/05/15/lodashjs-array-02/">
+  <link rel="canonical" href="http://wangyanan1220.coding.me/2019/06/14/lodash/">
 
 
 
 
 
-  <title>lodashjs —— Array（二） | Wynn</title>
+  <title>lodashjs —— Array（四） | Wynn</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/05/15/lodashjs-array-02/">
+    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/06/14/lodash/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yanan Wang">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">lodashjs —— Array（二）</h1>
+          <h1 class="post-title" itemprop="name headline">lodashjs —— Array（四）</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T18:53:36+08:00">
-                2019-05-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-14T14:19:27+08:00">
+                2019-06-14
               </time>
             
 
@@ -342,33 +342,13 @@
       
 
       
-        <h3 id="fill-array-value-start-0-end-array-length"><a href="#fill-array-value-start-0-end-array-length" class="headerlink" title="_.fill(array, value, [start=0], [end=array.length])"></a>_.fill(array, value, [start=0], [end=array.length])</h3><p>用从 start 开始到 end（但不包括 end）为止的值填充数组元素。</p>
-<blockquote>
-<p>这个方法改变数组</p>
-</blockquote>
+        <h3 id="sortedIndex-array-value"><a href="#sortedIndex-array-value" class="headerlink" title="_.sortedIndex(array, value)"></a>_.sortedIndex(array, value)</h3><p>使用二分查找来确定应将值插入数组的最低索引，以保持排序顺序。</p>
 <a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3];</span><br><span class="line"> </span><br><span class="line">_.fill(array, &apos;a&apos;);</span><br><span class="line">console.log(array);  // =&gt; [&apos;a&apos;, &apos;a&apos;, &apos;a&apos;]</span><br><span class="line"> </span><br><span class="line">_.fill(Array(3), 2);  // =&gt; [2, 2, 2]</span><br><span class="line"> </span><br><span class="line">_.fill([4, 6, 8, 10], &apos;*&apos;, 1, 3);  // =&gt; [4, &apos;*&apos;, &apos;*&apos;, 10]</span><br></pre></td></tr></table></figure>
-<h3 id="findIndex-array-predicate-identity-fromIndex-0"><a href="#findIndex-array-predicate-identity-fromIndex-0" class="headerlink" title="_.findIndex(array, [predicate=_.identity], [fromIndex=0])"></a>_.findIndex(array, [predicate=_.identity], [fromIndex=0])</h3><p>这个方法与 _.find 类似，不同的是 _.findIndex 返回 predicate 结果为 truthy 的第一个元素的索引，而不是元素本身。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var users = [</span><br><span class="line">  &#123; &apos;user&apos;: &apos;barney&apos;,  &apos;active&apos;: false &#125;,</span><br><span class="line">  &#123; &apos;user&apos;: &apos;fred&apos;,    &apos;active&apos;: false &#125;,</span><br><span class="line">  &#123; &apos;user&apos;: &apos;pebbles&apos;, &apos;active&apos;: true &#125;</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">_.findIndex(users, function(o) &#123; return o.user == &apos;barney&apos;; &#125;);  // =&gt; 0</span><br><span class="line"> </span><br><span class="line">_.findIndex(users, &#123; &apos;user&apos;: &apos;fred&apos;, &apos;active&apos;: false &#125;);  // =&gt; 1</span><br><span class="line"> </span><br><span class="line">_.findIndex(users, [&apos;active&apos;, false]);  // =&gt; 0</span><br><span class="line"> </span><br><span class="line">_.findIndex(users, &apos;active&apos;);  // =&gt; 2</span><br></pre></td></tr></table></figure>
-<h3 id="findLastIndex-array-predicate-identity-fromIndex-array-length-1"><a href="#findLastIndex-array-predicate-identity-fromIndex-array-length-1" class="headerlink" title="_.findLastIndex(array, [predicate=_.identity], [fromIndex=array.length-1])"></a>_.findLastIndex(array, [predicate=_.identity], [fromIndex=array.length-1])</h3><p>这个方法与 _.findIndex 类似，不同的是 _.findLastIndex 从右往左遍历元素。 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">_.findLastIndex(users, function(o) &#123; return o.user == &apos;pebbles&apos;; &#125;);  // =&gt; 2</span><br><span class="line"> </span><br><span class="line">_.findLastIndex(users, &#123; &apos;user&apos;: &apos;barney&apos;, &apos;active&apos;: true &#125;);  // =&gt; 0</span><br><span class="line"> </span><br><span class="line">_.findLastIndex(users, [&apos;active&apos;, false]);  // =&gt; 2</span><br><span class="line"> </span><br><span class="line">_.findLastIndex(users, &apos;active&apos;);  // =&gt; 0</span><br></pre></td></tr></table></figure>
-<h3 id="head-array"><a href="#head-array" class="headerlink" title="_.head(array)"></a>_.head(array)</h3><p>获取数组的第一个元素。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_.head([1, 2, 3]);  // =&gt; 1</span><br><span class="line"> </span><br><span class="line">_.head([]);  // =&gt; undefined</span><br></pre></td></tr></table></figure>
-<h3 id="flatten-array"><a href="#flatten-array" class="headerlink" title="_.flatten(array)"></a>_.flatten(array)</h3><p>将数组“压扁”一层</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.flatten([1, [2, [3, [4]], 5]]);  // =&gt; [1, 2, [3, [4]], 5]</span><br></pre></td></tr></table></figure>
-<h3 id="flattenDeep-array"><a href="#flattenDeep-array" class="headerlink" title="_.flattenDeep(array)"></a>_.flattenDeep(array)</h3><p>递归的“压扁”数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.flattenDeep([1, [2, [3, [4]], 5]]);  // =&gt; [1, 2, 3, 4, 5]</span><br></pre></td></tr></table></figure>
-<h3 id="flattenDepth-array-depth-1"><a href="#flattenDepth-array-depth-1" class="headerlink" title="_.flattenDepth(array, [depth=1])"></a>_.flattenDepth(array, [depth=1])</h3><p>递归的“压扁”数组到指定层数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, [2, [3, [4]], 5]];</span><br><span class="line"> </span><br><span class="line">_.flattenDepth(array, 1);  // =&gt; [1, 2, [3, [4]], 5]</span><br><span class="line"> </span><br><span class="line">_.flattenDepth(array, 2);  // =&gt; [1, 2, 3, [4], 5]</span><br></pre></td></tr></table></figure>
-<h3 id="fromPairs-pairs"><a href="#fromPairs-pairs" class="headerlink" title="_.fromPairs(pairs)"></a>_.fromPairs(pairs)</h3><p>与 _.toPairs 相反；这个方法返回由键值对组成的对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.fromPairs([[&apos;a&apos;, 1], [&apos;b&apos;, 2]]);  // =&gt; &#123; &apos;a&apos;: 1, &apos;b&apos;: 2 &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="head-array-1"><a href="#head-array-1" class="headerlink" title="_.head(array)"></a>_.head(array)</h3><p>获取数组的第一个元素</p>
-<blockquote>
-<p>别名：_.first</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_.head([1, 2, 3]);  // =&gt; 1</span><br><span class="line"> </span><br><span class="line">_.head([]);  // =&gt; undefined</span><br></pre></td></tr></table></figure>
-<h3 id="indexOf-array-value-fromIndex-0"><a href="#indexOf-array-value-fromIndex-0" class="headerlink" title="_.indexOf(array, value, [fromIndex=0])"></a>_.indexOf(array, value, [fromIndex=0])</h3><p>获取数组中 value 第一次出现的索引（如果没有匹配的，就返回 -1），如果 fromIndex 是负数，返回 value 在数组末尾的偏移量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_.indexOf([1, 2, 1, 2], 2);  // =&gt; 1</span><br><span class="line"> </span><br><span class="line">// Search from the `fromIndex`.</span><br><span class="line">_.indexOf([1, 2, 1, 2], 2, 2);  // =&gt; 3</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndex([30, 50], 40);  // =&gt; 1</span><br></pre></td></tr></table></figure>
+<h3 id="sortedIndexBy-array-value-iteratee-identity"><a href="#sortedIndexBy-array-value-iteratee-identity" class="headerlink" title="_.sortedIndexBy(array, value, [iteratee=_.identity])"></a>_.sortedIndexBy(array, value, [iteratee=_.identity])</h3><p>这个方法与 _.sortedIndex 相似，不同的是它接收一个遍历器，被值和数组的每个元素调用来计算他们的排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var objects = [&#123; &apos;x&apos;: 4 &#125;, &#123; &apos;x&apos;: 5 &#125;];</span><br><span class="line"> </span><br><span class="line">_.sortedIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, function(o) &#123; return o.x; &#125;);  // =&gt; 0</span><br><span class="line"> </span><br><span class="line">// The `_.property` iteratee shorthand.</span><br><span class="line">_.sortedIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, &apos;x&apos;);  // =&gt; 0</span><br></pre></td></tr></table></figure>
+<h3 id="sortedIndexOf-array-value"><a href="#sortedIndexOf-array-value" class="headerlink" title="_.sortedIndexOf(array, value)"></a>_.sortedIndexOf(array, value)</h3><p>这个方法与 _.sortedIndex 相似，不同的是它对一个有序数组执行二分查找。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndexOf([4, 5, 5, 5, 6], 5);  // =&gt; 1</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -399,8 +379,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/14/lodashjs-array-01/" rel="next" title="lodashjs —— Array（一）">
-                <i class="fa fa-chevron-left"></i> lodashjs —— Array（一）
+              <a href="/2019/05/28/lodashjs-array-04/" rel="next" title="lodashjs —— Array（四）">
+                <i class="fa fa-chevron-left"></i> lodashjs —— Array（四）
               </a>
             
           </div>
@@ -408,10 +388,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/15/angular-material-table/" rel="prev" title="Angular Material Table Basic">
-                Angular Material Table Basic <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -573,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#fill-array-value-start-0-end-array-length"><span class="nav-number">1.</span> <span class="nav-text">_.fill(array, value, [start=0], [end=array.length])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findIndex-array-predicate-identity-fromIndex-0"><span class="nav-number">2.</span> <span class="nav-text">_.findIndex(array, [predicate=_.identity], [fromIndex=0])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findLastIndex-array-predicate-identity-fromIndex-array-length-1"><span class="nav-number">3.</span> <span class="nav-text">_.findLastIndex(array, [predicate=_.identity], [fromIndex=array.length-1])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head-array"><span class="nav-number">4.</span> <span class="nav-text">_.head(array)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flatten-array"><span class="nav-number">5.</span> <span class="nav-text">_.flatten(array)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flattenDeep-array"><span class="nav-number">6.</span> <span class="nav-text">_.flattenDeep(array)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flattenDepth-array-depth-1"><span class="nav-number">7.</span> <span class="nav-text">_.flattenDepth(array, [depth=1])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fromPairs-pairs"><span class="nav-number">8.</span> <span class="nav-text">_.fromPairs(pairs)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head-array-1"><span class="nav-number">9.</span> <span class="nav-text">_.head(array)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#indexOf-array-value-fromIndex-0"><span class="nav-number">10.</span> <span class="nav-text">_.indexOf(array, value, [fromIndex=0])</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndex-array-value"><span class="nav-number">1.</span> <span class="nav-text">_.sortedIndex(array, value)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexBy-array-value-iteratee-identity"><span class="nav-number">2.</span> <span class="nav-text">_.sortedIndexBy(array, value, [iteratee=_.identity])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexOf-array-value"><span class="nav-number">3.</span> <span class="nav-text">_.sortedIndexOf(array, value)</span></a></li></ol></div>
             
 
           </div>
