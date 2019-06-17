@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Wynn">
 <meta property="og:description" content="_.sortedIndex(array, value)使用二分查找来确定应将值插入数组的最低索引，以保持排序顺序。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-14T07:27:04.393Z">
+<meta property="og:updated_time" content="2019-06-17T08:15:21.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lodashjs —— Array（四）">
 <meta name="twitter:description" content="_.sortedIndex(array, value)使用二分查找来确定应将值插入数组的最低索引，以保持排序顺序。">
@@ -349,6 +349,12 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var objects = [&#123; &apos;x&apos;: 4 &#125;, &#123; &apos;x&apos;: 5 &#125;];</span><br><span class="line"> </span><br><span class="line">_.sortedIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, function(o) &#123; return o.x; &#125;);  // =&gt; 0</span><br><span class="line"> </span><br><span class="line">// The `_.property` iteratee shorthand.</span><br><span class="line">_.sortedIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, &apos;x&apos;);  // =&gt; 0</span><br></pre></td></tr></table></figure>
 <h3 id="sortedIndexOf-array-value"><a href="#sortedIndexOf-array-value" class="headerlink" title="_.sortedIndexOf(array, value)"></a>_.sortedIndexOf(array, value)</h3><p>这个方法与 _.sortedIndex 相似，不同的是它对一个有序数组执行二分查找。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedIndexOf([4, 5, 5, 5, 6], 5);  // =&gt; 1</span><br></pre></td></tr></table></figure>
+<h3 id="sortedLastIndex-array-value"><a href="#sortedLastIndex-array-value" class="headerlink" title="_.sortedLastIndex(array, value)"></a>_.sortedLastIndex(array, value)</h3><p>这个方法与 _.sortedIndex 相似，不同的它返回值应该被插入数组的最高索引。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndex([4, 5, 5, 5, 6], 5);  // =&gt; 4</span><br></pre></td></tr></table></figure>
+<h3 id="sortedLastIndexBy-array-value-iteratee-identity"><a href="#sortedLastIndexBy-array-value-iteratee-identity" class="headerlink" title="_.sortedLastIndexBy(array, value, [iteratee=_.identity])"></a>_.sortedLastIndexBy(array, value, [iteratee=_.identity])</h3><p>这个方法与 _.sortedLastIndex 相似，不同的它接收一个遍历器，被值和数组的每个元素调用来计算它们的排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var objects = [&#123; &apos;x&apos;: 4 &#125;, &#123; &apos;x&apos;: 5 &#125;];</span><br><span class="line"> </span><br><span class="line">_.sortedLastIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, function(o) &#123; return o.x; &#125;);  // =&gt; 1</span><br><span class="line"> </span><br><span class="line">// The `_.property` iteratee shorthand.</span><br><span class="line">_.sortedLastIndexBy(objects, &#123; &apos;x&apos;: 4 &#125;, &apos;x&apos;);  // =&gt; 1</span><br></pre></td></tr></table></figure>
+<h3 id="sortedLastIndexOf-array-value"><a href="#sortedLastIndexOf-array-value" class="headerlink" title="_.sortedLastIndexOf(array, value)"></a>_.sortedLastIndexOf(array, value)</h3><p>这个方法与 _.lastIndexOf 相似，不同的它对一个有序数组执行二分查找。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_.sortedLastIndexOf([4, 5, 5, 5, 6], 5);  // =&gt; 3</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -549,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndex-array-value"><span class="nav-number">1.</span> <span class="nav-text">_.sortedIndex(array, value)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexBy-array-value-iteratee-identity"><span class="nav-number">2.</span> <span class="nav-text">_.sortedIndexBy(array, value, [iteratee=_.identity])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexOf-array-value"><span class="nav-number">3.</span> <span class="nav-text">_.sortedIndexOf(array, value)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndex-array-value"><span class="nav-number">1.</span> <span class="nav-text">_.sortedIndex(array, value)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexBy-array-value-iteratee-identity"><span class="nav-number">2.</span> <span class="nav-text">_.sortedIndexBy(array, value, [iteratee=_.identity])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedIndexOf-array-value"><span class="nav-number">3.</span> <span class="nav-text">_.sortedIndexOf(array, value)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedLastIndex-array-value"><span class="nav-number">4.</span> <span class="nav-text">_.sortedLastIndex(array, value)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedLastIndexBy-array-value-iteratee-identity"><span class="nav-number">5.</span> <span class="nav-text">_.sortedLastIndexBy(array, value, [iteratee=_.identity])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sortedLastIndexOf-array-value"><span class="nav-number">6.</span> <span class="nav-text">_.sortedLastIndexOf(array, value)</span></a></li></ol></div>
             
 
           </div>
