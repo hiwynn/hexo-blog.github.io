@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Angular,">
+  <meta name="keywords" content="前端,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新">
-<meta name="keywords" content="Angular">
+<meta name="description" content="我们经常需要整理后端返回的数据，比如前端展示的树结构很可能就要把后端返回的 Json 整理成嵌套的层级结构。 现在的需求就是把后端返回的数据形式的 json 按照 parent_id 和 id 整理成层级包含的树结构。 最开始由于一些错误的思想被引入了弯路：先循环取出第一层的数据，再循环取出第一层数据的子数据赋给第一层。这样的问题就是这能处理两层的，不够通用。  现在新的想法是先把数据遍历一遍，看">
+<meta name="keywords" content="前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Angular Material Table Basic">
-<meta property="og:url" content="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/index.html">
+<meta property="og:title" content="数据整理 —— 把后端返回的数据整理成层级、嵌套格式（树结构）">
+<meta property="og:url" content="http://wangyanan1220.coding.me/2019/09/05/arrangemen/index.html">
 <meta property="og:site_name" content="Wynn">
-<meta property="og:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新">
+<meta property="og:description" content="我们经常需要整理后端返回的数据，比如前端展示的树结构很可能就要把后端返回的 Json 整理成嵌套的层级结构。 现在的需求就是把后端返回的数据形式的 json 按照 parent_id 和 id 整理成层级包含的树结构。 最开始由于一些错误的思想被引入了弯路：先循环取出第一层的数据，再循环取出第一层数据的子数据赋给第一层。这样的问题就是这能处理两层的，不够通用。  现在新的想法是先把数据遍历一遍，看">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T03:00:49.548Z">
+<meta property="og:updated_time" content="2019-09-05T08:32:28.451Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Angular Material Table Basic">
-<meta name="twitter:description" content="使用创建组建、提供数据 创建组建  提供数据 dataSource 123&amp;lt;table mat-table [dataSource]=”myDataArray”&amp;gt;  ...&amp;lt;/table&amp;gt;  调用 renderRows() 对表的渲染进行更新">
+<meta name="twitter:title" content="数据整理 —— 把后端返回的数据整理成层级、嵌套格式（树结构）">
+<meta name="twitter:description" content="我们经常需要整理后端返回的数据，比如前端展示的树结构很可能就要把后端返回的 Json 整理成嵌套的层级结构。 现在的需求就是把后端返回的数据形式的 json 按照 parent_id 和 id 整理成层级包含的树结构。 最开始由于一些错误的思想被引入了弯路：先循环取出第一层的数据，再循环取出第一层数据的子数据赋给第一层。这样的问题就是这能处理两层的，不够通用。  现在新的想法是先把数据遍历一遍，看">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/">
+  <link rel="canonical" href="http://wangyanan1220.coding.me/2019/09/05/arrangemen/">
 
 
 
 
 
-  <title>Angular Material Table Basic | Wynn</title>
+  <title>数据整理 —— 把后端返回的数据整理成层级、嵌套格式（树结构） | Wynn</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/05/15/angular-material-table/">
+    <link itemprop="mainEntityOfPage" href="http://wangyanan1220.coding.me/2019/09/05/arrangemen/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yanan Wang">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Angular Material Table Basic</h1>
+          <h1 class="post-title" itemprop="name headline">数据整理 —— 把后端返回的数据整理成层级、嵌套格式（树结构）</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-15T18:53:36+08:00">
-                2019-05-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-05T16:09:41+08:00">
+                2019-09-05
               </time>
             
 
@@ -342,25 +342,30 @@
       
 
       
-        <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建组建、提供数据"><a href="#创建组建、提供数据" class="headerlink" title="创建组建、提供数据"></a>创建组建、提供数据</h3><ul>
-<li>创建组建 <table mat-table=""></table></li>
-<li><p>提供数据 dataSource</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;table mat-table [dataSource]=”myDataArray”&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>调用 renderRows() 对表的渲染进行更新</p>
-</li>
-</ul>
-<a id="more"></a>
-<h3 id="定义列模板"><a href="#定义列模板" class="headerlink" title="定义列模板"></a>定义列模板</h3><p>下面是一个名为“userName”的简单列定义。头部单元格包含文本“Name”，每行单元格将呈现每行数据的 name 属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ng-container matColumnDef=&quot;userName&quot;&gt;</span><br><span class="line">  &lt;th mat-header-cell *matHeaderCellDef&gt; Name &lt;/th&gt;</span><br><span class="line">  &lt;td mat-cell *matCellDef=&quot;let user&quot;&gt; &#123;&#123;user.name&#125;&#125; &lt;/td&gt;</span><br><span class="line">&lt;/ng-container&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="定义行模板"><a href="#定义行模板" class="headerlink" title="定义行模板"></a>定义行模板</h3><p>最后，一旦定义了列就要告诉表哪些列将在头和数据行中呈现。</p>
-<p>首先，在组件中创建一个变量，该变量包含要呈现的列的列表。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">columnsToDisplay = [&apos;userName&apos;, &apos;age&apos;];</span><br></pre></td></tr></table></figure>
-<p>然后将 <code>mat-header-row</code> 和 <code>mat-row</code> 添加到 <code>mat-table</code> 的内容中，并提供列列表作为输入。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr mat-header-row *matHeaderRowDef=&quot;columnsToDisplay&quot;&gt;&lt;/tr&gt;</span><br><span class="line">&lt;tr mat-row *matRowDef=&quot;let myRowData; columns: columnsToDisplay&quot;&gt;&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
-<p>提供给行的这个列表的列可以是任意顺序的，不必是定义的列的顺序。此外，不必包含模板中定义的每一列。</p>
-<p>这意味着，可以轻松地通过改变提供给行的列列表重新排序，并动态地包含/排除列。</p>
-
+        <p>我们经常需要整理后端返回的数据，比如前端展示的树结构很可能就要把后端返回的 Json 整理成嵌套的层级结构。</p>
+<h4 id="现在的需求就是把后端返回的数据形式的-json-按照-parent-id-和-id-整理成层级包含的树结构。"><a href="#现在的需求就是把后端返回的数据形式的-json-按照-parent-id-和-id-整理成层级包含的树结构。" class="headerlink" title="现在的需求就是把后端返回的数据形式的 json 按照 parent_id 和 id 整理成层级包含的树结构。"></a>现在的需求就是把后端返回的数据形式的 json 按照 <code>parent_id</code> 和 <code>id</code> 整理成层级包含的树结构。</h4><blockquote>
+<p>最开始由于一些错误的思想被引入了弯路：先循环取出第一层的数据，再循环取出第一层数据的子数据赋给第一层。这样的问题就是这能处理两层的，不够通用。</p>
+</blockquote>
+<p>现在新的想法是先把数据遍历一遍，看看哪些 <strong>item</strong> 有 <strong>children</strong>，然后重新循环数据，为有 <strong>children</strong> 的那些 <strong>item</strong> 找出它们所有的 <strong>child</strong> 并赋给它们。</p>
+<p>下面我们开始吧：</p>
+<ol>
+<li>遍历数据，看看哪些 <strong>item</strong> 有 <strong>children</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt; data.length; i++) &#123;</span><br><span class="line">  data[i].hasChildPermission = false;</span><br><span class="line">  data[i].children = []; // 顺便为所有的 item 添加 children 字段，后面直接 push</span><br><span class="line">  if (data.find(item =&gt; &#123;</span><br><span class="line">    return item.parent_id - data[i].id === 0;</span><br><span class="line">  &#125;)) &#123;</span><br><span class="line">    data[i].hasChildPermission = true;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>为有 <strong>children</strong> 的那些 <strong>item</strong> 找出它们所有的 <strong>child</strong> 并赋给它们</li>
+</ol>
+<blockquote>
+<p>注意这里是从后往前，因为不止有一级，这样可以让某一节点的子节点找全了自己全部的子节点之后再赋给这个节点。可能语言不那么好解释清楚，从前往后试试结果就很明了了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">for (let i = data.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">  if (data[i].hasChildPermission) &#123;</span><br><span class="line">    for (let j = 0; j &lt; data.length; j++) &#123;</span><br><span class="line">      if (data[i].id - data[j].parent_id === 0) &#123;</span><br><span class="line">        data[i].children.push(data[j]);</span><br><span class="line">        data[j].needRemove = true;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>把已经赋给父节点的需要去掉的子节点从数组中去掉。</li>
+</ol>
+<blockquote>
+<p>这里也走了一点弯路，刚开始是在上一步直接 slice 去掉那一项，这样出来的结果怎么也不对，因为我们在循环这个数组，但是这个数组本身又在变动，所以结果肯定不对。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let newData = [];</span><br><span class="line">newData = JSON.parse(JSON.stringify(data));</span><br><span class="line"></span><br><span class="line">_.remove(newData, item =&gt; &#123;</span><br><span class="line">  return item.needRemove;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -377,7 +382,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Angular/" rel="tag"># Angular</a>
+            <a href="/tags/前端/" rel="tag"># 前端</a>
           
         </div>
       
@@ -390,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/15/lodashjs-array-02/" rel="next" title="lodashjs —— Array（二）">
-                <i class="fa fa-chevron-left"></i> lodashjs —— Array（二）
+              <a href="/2019/06/14/lodashjs-array-05/" rel="next" title="lodashjs —— Array（五）">
+                <i class="fa fa-chevron-left"></i> lodashjs —— Array（五）
               </a>
             
           </div>
@@ -399,10 +404,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/21/lodashjs-array-03/" rel="prev" title="lodashjs —— Array（三）">
-                lodashjs —— Array（三） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建组建、提供数据"><span class="nav-number">1.1.</span> <span class="nav-text">创建组建、提供数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义列模板"><span class="nav-number">1.2.</span> <span class="nav-text">定义列模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义行模板"><span class="nav-number">1.3.</span> <span class="nav-text">定义行模板</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#现在的需求就是把后端返回的数据形式的-json-按照-parent-id-和-id-整理成层级包含的树结构。"><span class="nav-number">1.</span> <span class="nav-text">现在的需求就是把后端返回的数据形式的 json 按照 parent_id 和 id 整理成层级包含的树结构。</span></a></li></ol></div>
             
 
           </div>
